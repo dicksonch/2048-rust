@@ -17,7 +17,7 @@ struct Cli {
 fn main() {
     let cli = Cli::parse();
     let seed = cli.seed.unwrap_or(rand::random());
-    eprintln!("Starting game with seed: {seed}  (press A to toggle autoplay)");
+    eprintln!("Starting game with seed: {seed}");
     let win_tile_exp = cli.win_tile.map(|v| v.ilog2() as u8);
     if let Err(e) = twenty48::tui::run(seed, win_tile_exp) {
         eprintln!("Error: {e}");
