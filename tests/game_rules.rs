@@ -1,7 +1,7 @@
 //! Integration tests for game rules: spawn, terminal detection, Game struct.
 
-use twenty48::board::bitboard::Board;
-use twenty48::board::bitboard::Direction;
+use twenty48::board::Board;
+use twenty48::board::Direction;
 use twenty48::game::Game;
 
 // ---------------------------------------------------------------------------

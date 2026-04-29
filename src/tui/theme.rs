@@ -19,7 +19,7 @@
 //! Styles are precomputed once at first access via `std::sync::LazyLock`,
 //! consistent with `board::tables`.
 
-use crate::board::bitboard::Cell;
+use crate::board::Cell;
 use ratatui::style::{Color, Style};
 use std::sync::LazyLock;
 
@@ -65,7 +65,7 @@ fn compute_style(cell: Cell) -> Style {
             let r = S_R - ((S_R - E_R) as u16 * k / 14) as u8;
             let g = S_G - ((S_G - E_G) as u16 * k / 14) as u8;
             let b = S_B - ((S_B - E_B) as u16 * k / 14) as u8;
-            let bg = Color::Rgb(r as u8, g as u8, b as u8);
+            let bg = Color::Rgb(r, g, b);
             let fg = if k < 4 { Color::Black } else { Color::White };
             Style::default().fg(fg).bg(bg)
         }

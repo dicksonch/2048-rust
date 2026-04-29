@@ -20,7 +20,7 @@
 //!    right cell. A cell produced by merging cannot merge again.
 //! 3. **Compact again:** shift non-zero cells left to fill the gap.
 
-use super::bitboard::{Row, Score};
+use super::{Row, Score};
 use std::sync::LazyLock;
 
 /// Result of sliding every possible row left.

@@ -4,7 +4,7 @@
 //! and filled with tile 2 (log2 = 1, probability `P_TILE_2`) or tile 4
 //! (log2 = 2, probability `P_TILE_4`).
 
-use crate::board::bitboard::{Board, Cell};
+use crate::board::{Board, Cell};
 use rand::Rng;
 use rand_chacha::ChaCha8Rng;
 
@@ -35,7 +35,7 @@ pub fn spawn(board: Board, rng: &mut ChaCha8Rng) -> Option<(Board, (usize, usize
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::board::bitboard::EMPTY_BOARD;
+    use crate::board::EMPTY_BOARD;
     use rand::SeedableRng;
 
     #[test]

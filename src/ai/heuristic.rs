@@ -29,7 +29,7 @@
 //!    Values are powers of two throughout — no multiplication or f32 tables.
 //!
 //! Final: `evaluate(board) = empty_utility + best_snake_score`.
-use crate::board::bitboard::Board;
+use crate::board::Board;
 
 /// Floating-point score produced by the board evaluation function.
 pub type Eval = f64;
@@ -115,7 +115,7 @@ pub fn evaluate(board: Board) -> Eval {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::board::bitboard::EMPTY_BOARD;
+    use crate::board::EMPTY_BOARD;
 
     #[test]
     fn evaluate_empty_board_is_finite_and_positive() {

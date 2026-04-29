@@ -2,7 +2,7 @@
 
 use crate::ai::heuristic::Eval;
 use crate::ai::search::Depth;
-use crate::board::bitboard::Board;
+use crate::board::Board;
 use std::collections::HashMap;
 
 /// Transposition table mapping `(board, depth)` to computed expected value.

@@ -1,6 +1,6 @@
 //! Game state, rules, and move application.
 
-use crate::board::bitboard::{Board, Direction, Score};
+use crate::board::{Board, Direction, Score};
 use rand::{RngCore, SeedableRng};
 use rand_chacha::ChaCha8Rng;
 

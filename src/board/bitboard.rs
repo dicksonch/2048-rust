@@ -83,7 +83,11 @@ impl Board {
     #[inline]
     pub fn tile_value(self, r: usize, c: usize) -> u32 {
         let exp = self.get_cell(r, c);
-        if exp == 0 { 0 } else { 1u32 << exp }
+        if exp == 0 {
+            0
+        } else {
+            1u32 << exp
+        }
     }
 
     /// Return a new board with cell `(r, c)` set to `v` (log2 exponent).

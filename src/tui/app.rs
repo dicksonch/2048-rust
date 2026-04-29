@@ -4,7 +4,7 @@
 //! stack, and any transient message. `App` does not interact with the terminal;
 //! that is the responsibility of `tui::mod`.
 
-use crate::board::bitboard::{Board, Direction, Score};
+use crate::board::{Board, Direction, Score};
 use crate::game::Game;
 
 /// Autoplay / human-play mode selector.

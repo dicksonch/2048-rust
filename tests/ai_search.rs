@@ -5,7 +5,7 @@
 //! depth/quality regression coverage.
 
 use twenty48::ai::best_move;
-use twenty48::board::bitboard::Board;
+use twenty48::board::Board;
 // ---------------------------------------------------------------------------
 // best_move returns Some legal move on non-terminal boards
 // ---------------------------------------------------------------------------
@@ -17,7 +17,10 @@ fn best_move_legal_on_simple_board() {
     let board = Board::from_array([[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]);
     let result = best_move(board);
     let dir = result.best_move;
-    assert!(dir.is_some(), "best_move returned None on non-terminal board");
+    assert!(
+        dir.is_some(),
+        "best_move returned None on non-terminal board"
+    );
     let d = dir.unwrap();
     assert!(
         board.slide(d).is_some(),
@@ -31,7 +34,10 @@ fn best_move_legal_on_mid_game_board() {
     let board = Board::from_array([[1, 2, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]);
     let result = best_move(board);
     let dir = result.best_move;
-    assert!(dir.is_some(), "best_move returned None on non-terminal board");
+    assert!(
+        dir.is_some(),
+        "best_move returned None on non-terminal board"
+    );
     let d = dir.unwrap();
     assert!(
         board.slide(d).is_some(),

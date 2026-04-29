@@ -69,7 +69,7 @@
 
 use crate::ai::heuristic::{evaluate, Eval};
 use crate::ai::transposition::TranspositionTable;
-use crate::board::bitboard::{Board, Direction};
+use crate::board::{Board, Direction};
 use crate::game::spawn::{P_TILE_2, P_TILE_4};
 use std::time::Instant;
 

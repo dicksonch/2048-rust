@@ -18,8 +18,8 @@ use crossterm::{
 use ratatui::{backend::CrosstermBackend, Terminal};
 
 use crate::ai::best_move as ai_search;
-use crate::board::bitboard::{Board, Direction};
 use crate::board::tables::warm_tables;
+use crate::board::{Board, Direction};
 use crate::tui::app::{App, HintInfo, Mode};
 use crate::tui::theme::warm_styles;
 use crate::tui::ui;
@@ -116,7 +116,7 @@ fn run_loop<B: ratatui::backend::Backend>(
     let mut app = App::new(seed, win_tile_exp);
 
     // Poll timeout — also defines the auto-play step interval.
-    let poll_timeout = Duration::from_millis(50);
+    let poll_timeout = Duration::from_millis(30);
 
     loop {
         // Draw frame
