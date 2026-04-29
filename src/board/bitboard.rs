@@ -82,7 +82,8 @@ impl Board {
     /// log2 exponent stored in the cell.
     #[inline]
     pub fn tile_value(self, r: usize, c: usize) -> u32 {
-        1u32 << self.get_cell(r, c)
+        let exp = self.get_cell(r, c);
+        if exp == 0 { 0 } else { 1u32 << exp }
     }
 
     /// Return a new board with cell `(r, c)` set to `v` (log2 exponent).

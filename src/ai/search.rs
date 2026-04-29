@@ -66,11 +66,8 @@
 //! [`evaluate`] is returned. See [`crate::ai::heuristic`] for the two-component
 //! formula (empty-cell utility + best snake score).
 //!
-//! Terminal boards at internal nodes receive `TERMINAL_PENALTY` (= −1 000 000 000),
-//! a very negative sentinel that discourages the search from choosing a move that
-//! ends the game.
 
-use crate::ai::heuristic::{evaluate, Eval, TERMINAL_PENALTY};
+use crate::ai::heuristic::{evaluate, Eval};
 use crate::ai::transposition::TranspositionTable;
 use crate::board::bitboard::{Board, Direction};
 use crate::game::spawn::{P_TILE_2, P_TILE_4};
@@ -129,7 +126,6 @@ pub fn best_move(board: Board) -> SearchResult {
         }
     }
 
-    // `start` and the time-budget check above still guard iterative deepening.
     SearchResult {
         best_move: best_dir,
         depth_reached,
@@ -157,7 +153,7 @@ fn search_max(
         }
     }
     let mut best_dir = None;
-    let mut best = Eval::NEG_INFINITY;
+    let mut best = 0.0f64;
     for &dir in &Direction::ALL {
         if let Some((new_board, score_gained)) = board.slide(dir) {
             let val = score_gained as f64 + search_chance(new_board, depth - 1, prob, tt);
@@ -166,9 +162,6 @@ fn search_max(
                 best_dir = Some(dir);
             }
         }
-    }
-    if best == Eval::NEG_INFINITY {
-        best = TERMINAL_PENALTY;
     }
     if !is_root {
         tt.insert(board, depth, best);

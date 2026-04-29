@@ -34,10 +34,6 @@ use crate::board::bitboard::Board;
 /// Floating-point score produced by the board evaluation function.
 pub type Eval = f64;
 
-/// Penalty value for terminal boards; consumed by the search layer, not by
-/// `evaluate()` itself.
-pub const TERMINAL_PENALTY: Eval = -1.0e9;
-
 // ---------------------------------------------------------------------------
 // Empty-cell utility lookup (17 entries, n = 0 ..= 16)
 // ---------------------------------------------------------------------------

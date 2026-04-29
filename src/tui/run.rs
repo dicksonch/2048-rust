@@ -132,7 +132,7 @@ fn run_loop<B: ratatui::backend::Backend>(
                 Action::Quit => break,
                 Action::Move(dir) if app.mode == Mode::Human => app.try_move(dir),
                 Action::RequestHint => {
-                    app.set_hint(compute_move(&app.game.board));
+                    app.set_hint(compute_move(app.game.board));
                 }
                 Action::ToggleAuto => app.toggle_auto(),
                 Action::Undo => app.undo(),
@@ -144,7 +144,7 @@ fn run_loop<B: ratatui::backend::Backend>(
 
         // Auto-play: step on each loop iteration
         if app.mode == Mode::Auto && !app.is_game_over() && !app.is_game_won() {
-            match compute_move(&app.game.board) {
+            match compute_move(app.game.board) {
                 HintInfo::Move { dir, .. } => app.try_move(dir),
                 HintInfo::NoMoves => {} // board is terminal, loop will exit naturally
             }
@@ -155,8 +155,8 @@ fn run_loop<B: ratatui::backend::Backend>(
 }
 
 /// Run the AI search and return a hint.
-fn compute_move(board: &Board) -> HintInfo {
-    let result = ai_search(*board);
+fn compute_move(board: Board) -> HintInfo {
+    let result = ai_search(board);
     match result.best_move {
         Some(dir) => HintInfo::Move {
             dir,

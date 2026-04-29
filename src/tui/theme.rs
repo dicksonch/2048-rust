@@ -60,14 +60,13 @@ fn compute_style(cell: Cell) -> Style {
         0 => Style::default()
             .fg(Color::DarkGray)
             .bg(Color::Rgb(40, 40, 40)),
-        n @ 1..=14 => {
-            // Integer lerp: S - (S - E) * k / 14   (k = n - 1)
-            let k = (n - 1) as i32;
-            let r = S_R as i32 - ((S_R as i32 - E_R as i32) * k) / 14;
-            let g = S_G as i32 - ((S_G as i32 - E_G as i32) * k) / 14;
-            let b = S_B as i32 - ((S_B as i32 - E_B as i32) * k) / 14;
+        k @ 0..=14 => {
+            let k = k as u16;
+            let r = S_R - ((S_R - E_R) as u16 * k / 14) as u8;
+            let g = S_G - ((S_G - E_G) as u16 * k / 14) as u8;
+            let b = S_B - ((S_B - E_B) as u16 * k / 14) as u8;
             let bg = Color::Rgb(r as u8, g as u8, b as u8);
-            let fg = if n <= 4 { Color::Black } else { Color::White };
+            let fg = if k < 4 { Color::Black } else { Color::White };
             Style::default().fg(fg).bg(bg)
         }
         _ => Style::default(),
