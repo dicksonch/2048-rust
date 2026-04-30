@@ -95,6 +95,7 @@ impl App {
         if let Some((board, score)) = self.history.pop() {
             self.game.board = board;
             self.game.score = score;
+            self.game.moves = self.game.moves.saturating_sub(1);
             self.hint = None;
             self.message = Some("Undone".to_string());
         } else {
